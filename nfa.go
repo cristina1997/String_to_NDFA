@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+//
 type state struct {
 	// 	If edges are labeled with epsylon symbol = 0 (default value)
 	// 	If edges are labeled with some other letter
@@ -72,10 +73,23 @@ func postToNfa(postfix string) *nfaFragment {
 		}
 	}
 
+	if len(nfaStack) != 1 {
+		fmt.Println("Uh oh: ", len(nfaStack), nfaStack)
+	}
 	return nfaStack[0]
+}
+
+// It takes the first regular expression in postfix notation and any other string and returns true if the 2 strings match or false if they don't
+func postfixMatch(postfix string, strToCompare string) bool {
+	isMatched := false
+	postNfa := postToNfa(postfix)
+
+	return isMatched
 }
 
 func main() {
 	nfaFragment := postToNfa("ab.c*|")
 	fmt.Println(nfaFragment)
+
+	fmt.Println(postfixMatch("ab.c*|", "cccc"))
 }
