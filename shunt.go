@@ -18,8 +18,8 @@ func inToPost(infix string) string {
 	postfix := []rune{}
 
 	// A stack storing operators fromthe infix regular expressions
-	s := []rune{}
-	// s := stack
+	stack := []rune{}
+	s := stack
 
 	// Loop over the infix and convert it into postfix
 	// When range is used on a string, it converts it to a rune
