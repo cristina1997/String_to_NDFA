@@ -36,8 +36,10 @@ func postToNfa(postfix string) *nfaFragment {
 		case '.': // Concatenation N.M - Pops 2 fragments off the nfa stack, it joins them together and pushes the new fragment onto the nfa stack
 
 			// Pops 2 fragments off the nfa stack
-			fragment2, nfaStack := nfaStack[len(nfaStack)-1], nfaStack[:len(nfaStack)-1]
-			fragment1, nfaStack := nfaStack[len(nfaStack)-1], nfaStack[:len(nfaStack)-1]
+			fragment2 := nfaStack[len(nfaStack)-1]
+			nfaStack = nfaStack[:len(nfaStack)-1]
+			fragment1 := nfaStack[len(nfaStack)-1]
+			nfaStack = nfaStack[:len(nfaStack)-1]
 
 			// Join the 2 fragments together in a concatenated fragment and push it back to the nfa stack
 			fragment1.accept.arrow1 = fragment2.initial
@@ -45,8 +47,10 @@ func postToNfa(postfix string) *nfaFragment {
 			// Pushes new concatenated fragment onto the nfa stack
 			nfaStack = append(nfaStack, &nfaFragment{initial: fragment1.initial, accept: fragment2.accept})
 		case '|': // Union N|M - Pops 2 fragments off the nfa stack, it joins them to newly created states and pushes the new fragments onto the nfa stack
-			fragment2, nfaStack := nfaStack[len(nfaStack)-1], nfaStack[:len(nfaStack)-1]
-			fragment1, nfaStack := nfaStack[len(nfaStack)-1], nfaStack[:len(nfaStack)-1]
+			fragment2 := nfaStack[len(nfaStack)-1]
+			nfaStack = nfaStack[:len(nfaStack)-1]
+			fragment1 := nfaStack[len(nfaStack)-1]
+			nfaStack = nfaStack[:len(nfaStack)-1]
 
 			// Create 2 new states
 			accept := state{}
@@ -56,7 +60,8 @@ func postToNfa(postfix string) *nfaFragment {
 
 			nfaStack = append(nfaStack, &nfaFragment{initial: &initial, accept: &accept})
 		case '*': // Kleene star N∗ - Pops 1 fragment off the nfa stack, creates 2 new states (accept and initial) and pushes the new fragment onto the nfa stack
-			fragment, nfaStack := nfaStack[len(nfaStack)-1], nfaStack[:len(nfaStack)-1]
+			fragment := nfaStack[len(nfaStack)-1]
+			nfaStack = nfaStack[:len(nfaStack)-1]
 
 			accept := state{}
 			initial := state{arrow1: fragment.initial, arrow2: &accept}
@@ -73,7 +78,7 @@ func postToNfa(postfix string) *nfaFragment {
 	} // for
 
 	if len(nfaStack) != 1 {
-		fmt.Println("Uh oh: ", len(nfaStack), nfaStack)
+		fmt.Println("The NFA stack should only contain 1 thing!", len(nfaStack), nfaStack)
 	} // if
 
 	return nfaStack[0]
@@ -122,20 +127,19 @@ func postfixMatch(postfix string, inputStr string) bool {
 			}
 		} // for
 
-		// Loop through the current array once the full string is read
-		for _, currState := range current {
-
-			// If the final string resulted from the above calculation matches the accept state of the postfix to nfa conversion then the 2 strings match
-			if currState == postNfa.accept {
-				isMatched = true
-				break
-			} // if
-		} // for
-
 		// Once the characters are read - the current set of states become the old set of states - replaced with the next array
 		// 								- a new next array is created with nothing in it
 		current, next = next, []*state{}
+	} // for
 
+	// Loop through the current array once the full string is read
+	for _, currState := range current {
+
+		// If the final string resulted from the above calculation matches the accept state of the postfix to nfa conversion then the 2 strings match
+		if currState == postNfa.accept {
+			isMatched = true
+			break
+		} // if
 	} // for
 
 	return isMatched
@@ -144,6 +148,13 @@ func postfixMatch(postfix string, inputStr string) bool {
 func main() {
 	// nfaFragment := postToNfa("ab.c*|")
 	// fmt.Println(nfaFragment)
+	// fmt.Println(postfixMatch("ab.c*|", "cccc"))
 
-	fmt.Println(postfixMatch("ab.c*|", "cccc"))
+	match := postfixMatch("ab.c*|", "")
+
+	if match {
+		fmt.Println("\nIt's a match!\n")
+	} else if match == false {
+		fmt.Println("\nIt's not a match!\n")
+	}
 } // main
