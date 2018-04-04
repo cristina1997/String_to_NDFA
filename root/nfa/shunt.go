@@ -53,28 +53,3 @@ func InToPost(infix string) string {
 
 	return string(postfix)
 } // inToPost
-
-// Examples of infix expressions that are to be converted into postfix epressions
-// func main() {
-
-// 	// Answer for ab.c*.
-// 	// Explanation: 'a' followed by a 'b', followed by 0 or more 'c's
-// 	fmt.Println("Infix: ", "a.b.c*")
-// 	fmt.Println("Postfix: ", inToPost("a.b.c*"))
-
-// 	// Answer for abd|.*
-// 	// Explanation: 0 or more of 'a followed by a 'b or d'
-// 	fmt.Println("Infix: ", "(a.(b|d))*")
-// 	fmt.Println("Postfix: ", inToPost("(a.(b|d))*"))
-
-// 	// Answer for abd|.c*.
-// 	// Explanation: 'a' followed by a 'b or d', followed by 0 or more 'c's
-// 	fmt.Println("Infix: ", "(a.(b|d)).c*")
-// 	fmt.Println("Postfix: ", inToPost("(a.(b|d)).c*"))
-
-// 	// Answer for abb.+.c.
-// 	// Explanation: 'a' followed by 'b followed by b' OR ('+' - in any order) followed by 'c'
-// 	fmt.Println("Infix: ", "a.(b.b)+.c")
-// 	fmt.Println("Postfix: ", inToPost("a.(b.b)+.c"))
-
-// } // main

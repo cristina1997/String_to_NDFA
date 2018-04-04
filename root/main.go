@@ -59,47 +59,79 @@ func checkMatch(postfix string, str string) {
 } // checkMatch
 
 func main() {
+
 	var option int
 	var infix, postfix, str string
 
 	option = optionChoice()
 
-	for option != 4 {
-		switch option {
-		case 1:
-			// Input infix regular expression
-			infix = inputInfix()
-			// It converts the infix regular expression to a postfix regular expression
-			postfix = nfa.InToPost(infix)
+	switch option {
+	case 1:
+		// Examples of infix expressions and their conversion into postfix
+		// 1. Explanation: 'a' followed by a 'b', followed by 0 or more 'c's
+		// 			- Infix: a.b.c*
+		// 			- Postfix: ab.c*
+		// 2. Explanation: 0 or more of 'a followed by a 'b or d'
+		// 			- Infix: a.(b|d))*
+		// 			- Postfix: abd|.
+		// 3. Explanation: 'a' followed by a 'b or d', followed by 0 or more 'c's
+		// 			- Infix: a.(b|d)).c*
+		// 			- Postfix:  abd|.c*.
 
-			fmt.Println("\n\tThe postfix regular expression of the infix \"" + infix + "\" is \"" + postfix + "\"\n")
-		case 2:
-			// Input infix regular expressin and any string
-			infix = inputInfix()
-			str = inputString()
+		// Input infix regular expression
+		infix = inputInfix()
+		// It converts the infix regular expression to a postfix regular expression
+		postfix = nfa.InToPost(infix)
 
-			// It converts the infix regular expression  to a postfix regular expression
-			postfix = nfa.InToPost(infix)
+		fmt.Println("\n\tThe postfix regular expression of the infix \"" + infix + "\" is \"" + postfix + "\"\n")
+		break
+	case 2:
+		// Examples of infix expressions and their string matches
+		// 1. Explanation: 'a' followed by a 'b' or 0 or more 'c's
+		// 			- Infix: a.b|c*
+		// 			- Postfix: ab.c*|
+		//			- String: cccc
+		//			- Match: Yes
+		//					OR
+		// 			- Infix: a.b|c*
+		// 			- Postfix: ab.c*|
+		//			- String: B
+		//			- Match: NO
 
-			// It checks if the postfix matches the string inputed by the user
-			checkMatch(postfix, str)
+		// Input infix regular expressin and any string
+		infix = inputInfix()
+		str = inputString()
 
-		case 3:
-			// Input postfix regular expressin and any string
-			postfix = inputPostfix()
-			str = inputString()
+		// It converts the infix regular expression  to a postfix regular expression
+		postfix = nfa.InToPost(infix)
 
-			// It checks if the postfix matches the string inputed by the user
-			checkMatch(postfix, str)
+		// It checks if the postfix matches the string inputed by the user
+		checkMatch(postfix, str)
+		break
+	case 3:
+		// Examples of postfix expressions and their string matches
+		// 1. Explanation: 'a' followed by a 'b' or 0 or more 'c's
+		// 			- Postfix: ab.c*|
+		//			- String: cccc
+		//			- Match: Yes
+		//					OR
+		// 			- Postfix: ab.c*|
+		//			- String: B
+		//			- Match: NO
 
-		case 4:
-			fmt.Print("\n\tThank you for your time :) !\n\n")
-			break
-		default:
-			fmt.Println("\n\tYou did not enter one of the 4 options above")
-			fmt.Print("\tPlease try again!\n\n")
-		}
+		// Input postfix regular expressin and any string
+		postfix = inputPostfix()
+		str = inputString()
 
-	}
+		// It checks if the postfix matches the string inputed by the user
+		checkMatch(postfix, str)
+		break
+	case 4:
+		fmt.Print("\n\tThank you for your time :) !\n\n")
+		break
+	default:
+		fmt.Println("\n\tYou did not enter one of the 4 options above")
+		fmt.Print("\tPlease try again!\n\n")
+	} // switch
 
-}
+} // main
