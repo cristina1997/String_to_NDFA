@@ -1,4 +1,8 @@
-package main
+// Code adapted from:
+//		Thompson Construction 	- https://web.microsoftstream.com/video/68a288f5-4688-4b3a-980e-1fcd5dd2a53b
+//		Reges Match 			- https://web.microsoftstream.com/video/bad665ee-3417-4350-9d31-6db35cf5f80d
+
+package nfa
 
 import (
 	"fmt"
@@ -23,7 +27,7 @@ type nfaFragment struct {
 	accept  *state
 }
 
-// It converts a postfix regular expression to an nfa
+// Converts a postfix regular expression to an nfa
 func postToNfa(postfix string) *nfaFragment {
 	// Thompson's algorithm keeps track of fragments of nfa's on a stack
 	// Goal - single element on the stack at the end matching the regular expression
@@ -103,7 +107,7 @@ func addState(list []*state, single *state, acceptS *state) []*state {
 } // addState
 
 // It takes the first regular expression in postfix notation and any other string and returns true if the 2 strings match or false if they don't
-func postfixMatch(postfix string, inputStr string) bool {
+func PostfixMatch(postfix string, inputStr string) bool {
 	isMatched := false
 	postNfa := postToNfa(postfix)
 
@@ -145,6 +149,12 @@ func postfixMatch(postfix string, inputStr string) bool {
 	return isMatched
 } // postfixMatch
 
+// HelloWorld()
+func HelloWorld() {
+	fmt.Println("Hello World")
+}
+
+/*
 func main() {
 	// nfaFragment := postToNfa("ab.c*|")
 	// fmt.Println(nfaFragment)
@@ -157,4 +167,4 @@ func main() {
 	} else if match == false {
 		fmt.Println("\nIt's not a match!\n")
 	}
-} // main
+} // main */
