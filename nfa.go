@@ -64,7 +64,11 @@ func postToNfa(postfix string) *nfaFragment {
 			fragment.accept.arrow2 = &accept
 
 			nfaStack = append(nfaStack, &nfaFragment{initial: &initial, accept: &accept})
-		default: // Any other non-special character e.g. a, b, 1, 0 - The fragment is pushed to the stack
+		default: // Any other non-special characters e.g. a, b, 1, 0 - The fragment is pushed to the stack
+			accept := state{}
+			initial := state{symbol: r, arrow1: &accept}
+
+			nfaStack = append(nfaStack, &nfaFragment{initial: &initial, accept: &accept})
 		}
 	}
 
