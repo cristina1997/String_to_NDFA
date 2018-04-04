@@ -36,7 +36,7 @@ func inToPost(infix string) string {
 				// The ':' before len gets everything in the stack except the last character
 				postfix, s = append(postfix, s[len(s)-1]), s[:len(s)-1]
 
-			}
+			} // for
 			s = s[:len(s)-1]
 
 		// The current character we are reading from infix is a special character
@@ -45,19 +45,19 @@ func inToPost(infix string) string {
 			// We take the elementat the top of the stack and put it into postfix
 			for len(s) > 0 && specialCharacters[r] <= specialCharacters[s[len(s)-1]] {
 				postfix, s = append(postfix, s[len(s)-1]), s[:len(s)-1]
-			}
+			} // for
 			s = append(s, r)
 		default:
 			postfix = append(postfix, r)
-		}
+		} // switch
 	} // for
 
 	for len(s) > 0 {
 		postfix, s = append(postfix, s[len(s)-1]), s[:len(s)-1]
-	}
+	} // for
 
 	return string(postfix)
-}
+} // inToPost
 
 // Examples of infix expressions that are to be converted into postfix epressions
 func main() {
@@ -82,4 +82,4 @@ func main() {
 	fmt.Println("Infix: ", "a.(b.b)+.c")
 	fmt.Println("Postfix: ", inToPost("a.(b.b)+.c"))
 
-}
+} // main
