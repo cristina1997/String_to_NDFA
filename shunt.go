@@ -9,7 +9,7 @@ import (
 )
 
 // Converts infix regular expressions to postfix regular expressions
-func intopost(infix string) string {
+func inToPost(infix string) string {
 	// Maps special characters to integer values to keep track of the precedence of the operators
 	specialCharacters := map[rune]int{'*': 10, '.': 9, '|': 8}
 
@@ -65,21 +65,21 @@ func main() {
 	// Answer for ab.c*.
 	// Explanation: 'a' followed by a 'b', followed by 0 or more 'c's
 	fmt.Println("Infix: ", "a.b.c*")
-	fmt.Println("Postfix: ", intopost("a.b.c*"))
+	fmt.Println("Postfix: ", inToPost("a.b.c*"))
 
 	// Answer for abd|.*
-	// Explanation: 0 or more of 'a' followed by a 'b or d'
+	// Explanation: 0 or more of 'a followed by a 'b or d'
 	fmt.Println("Infix: ", "(a.(b|d))*")
-	fmt.Println("Postfix: ", intopost("(a.(b|d))*"))
+	fmt.Println("Postfix: ", inToPost("(a.(b|d))*"))
 
 	// Answer for abd|.c*.
 	// Explanation: 'a' followed by a 'b or d', followed by 0 or more 'c's
 	fmt.Println("Infix: ", "(a.(b|d)).c*")
-	fmt.Println("Postfix: ", intopost("(a.(b|d)).c*"))
+	fmt.Println("Postfix: ", inToPost("(a.(b|d)).c*"))
 
 	// Answer for abb.+.c.
 	// Explanation: 'a' followed by 'b followed by b' OR ('+' - in any order) followed by 'c'
 	fmt.Println("Infix: ", "a.(b.b)+.c")
-	fmt.Println("Postfix: ", intopost("a.(b.b)+.c"))
+	fmt.Println("Postfix: ", inToPost("a.(b.b)+.c"))
 
 }
