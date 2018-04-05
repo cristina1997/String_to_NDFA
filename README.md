@@ -29,8 +29,8 @@ In this program 2 algorithms were used
 
 Thompson's Construction Algorithm can be used to find out an NDFA from a Regular Expression. The algorithm works by splitting an expression into subexpressions, from which the NFA will be constructed using a set of rules.
 
-#### Rules
-1. Non-Special Characters
+### Rules
+#### 1. Non-Special Characters
 * The empty-expression ε is converted to
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Thompson-epsilon.svg/417px-Thompson-epsilon.svg.png)
@@ -40,19 +40,19 @@ Thompson's Construction Algorithm can be used to find out an NDFA from a Regular
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thompson-a-symbol.svg/417px-Thompson-a-symbol.svg.png)
 
 
-2. Concatenation N.M
+#### 2. Concatenation N.M
 * Two fragments are popped from the stack and pushed into the following
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Thompson-concat.svg/597px-Thompson-concat.svg.png)
 
 
-3. Union N|M
+#### 3. Union N|M
 * Two fragments are popped from the stack and pushed into the following
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Thompson-or.svg/680px-Thompson-or.svg.png)
 
 
-4. Kleene Star N∗
+#### 4. Kleene Star N∗
 * A fragment is popped from the stack and pushed into the following
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Thompson-kleene-star.svg/755px-Thompson-kleene-star.svg.png)
@@ -68,7 +68,7 @@ Shunting Yard Algorithm is used to change infix mathematical expressions into po
 
 Computers must be told explicitly what the order of the operations and parameters should be and this can be done by [reverse polish](http://www-stone.ch.cam.ac.uk/documentation/rrf/rpn.html).
 
-#### Procedure:
+### Procedure:
 * Expressions are parsed left to right.
 * Each read character is pushed onto the stack.
 * Every time an operator comes up, the operands related to it are popped from the stack to perform the calculations. The result is then pushed back tothe stack.
