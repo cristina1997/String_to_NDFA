@@ -3,6 +3,7 @@ This is a program written in Go language that can build a non-deterministic ﬁn
 
 ## What is an NDFA?
 [Find out more](https://www.tutorialspoint.com/automata_theory/non_deterministic_finite_automaton.htm)
+
 A particular input symbol in NDFA influences the combination of states a machine moves to. It is called Non-deterministic Finite Automaton because it has a finite number of states and the exact state to which the machine moves cannot be determined.
 
 An NDFA is represented by digraphs 
@@ -24,6 +25,7 @@ In this program 2 algorithms were used
 
 ## Thompson's Construction Algorithm
 [Find out more](https://en.wikipedia.org/wiki/Thompson%27s_construction)
+
 Thompson's Construction Algorithm can be used to find out an NDFA from a Regular Expression. The algorithm works by splitting an expression into subexpressions, from which the NFA will be constructed using a set of rules.
 
 #### Rules
@@ -51,6 +53,7 @@ Thompson's Construction Algorithm can be used to find out an NDFA from a Regular
 
 ## Shunting Yard Algorithm
 [Find out more](https://brilliant.org/wiki/shunting-yard-algorithm/)
+
 Shunting Yard Algorithm is used to change infix mathematical expressions into postfix expressions. 
 
 Computers must be told explicitly what the order of the operations and parameters should be and this can be done by [reverse polish](http://www-stone.ch.cam.ac.uk/documentation/rrf/rpn.html).
