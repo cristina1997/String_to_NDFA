@@ -32,20 +32,29 @@ Thompson's Construction Algorithm can be used to find out an NDFA from a Regular
 #### Rules
 1. Non-Special Characters
 * The empty-expression ε is converted to
+
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Thompson-epsilon.svg/417px-Thompson-epsilon.svg.png)
+
 * A symbol a of the input alphabet is converted to
+
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Thompson-a-symbol.svg/417px-Thompson-a-symbol.svg.png)
+
 
 2. Concatenation N.M
 * Two fragments are popped from the stack and pushed into the following
+
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Thompson-concat.svg/597px-Thompson-concat.svg.png)
+
 
 3. Union N|M
 * Two fragments are popped from the stack and pushed into the following
+
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Thompson-or.svg/680px-Thompson-or.svg.png)
+
 
 4. Kleene Star N∗
 * A fragment is popped from the stack and pushed into the following
+
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Thompson-kleene-star.svg/755px-Thompson-kleene-star.svg.png)
 
 [Find out more](https://en.wikipedia.org/wiki/Thompson%27s_construction)
